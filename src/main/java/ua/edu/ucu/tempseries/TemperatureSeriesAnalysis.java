@@ -133,7 +133,7 @@ public class TemperatureSeriesAnalysis {
 
     }
 
-    public double[] addTemps(double... temps) {
+    public double addTemps(double... temps) {
         checkIfEmpty();
         int len = temperatureSeries.length + temps.length;
         double[] res = new double [len];
@@ -150,8 +150,13 @@ public class TemperatureSeriesAnalysis {
             i += 1;
         }
         temperatureSeries = res;
-        return temperatureSeries;
+        sum();
+        return this.sum;
+    }
+
+    public static void main(String[] args) {
+        double[] arr = {1.0, 3.0, -5.0, 5.0};
+        TemperatureSeriesAnalysis tempseries = new TemperatureSeriesAnalysis(arr);
+        System.out.println(tempseries.addTemps(1.0, 2.0));
     }
 }
-
-
