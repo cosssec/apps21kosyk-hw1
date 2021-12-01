@@ -6,8 +6,8 @@ public class TempSummaryStatistics {
     private final double minTemp;
     private final double maxTemp;
 
-    public TempSummaryStatistics
-            (double avgTemp,
+    public TempSummaryStatistics(
+             double avgTemp,
              double devTemp,
              double minTemp,
              double maxTemp) {
