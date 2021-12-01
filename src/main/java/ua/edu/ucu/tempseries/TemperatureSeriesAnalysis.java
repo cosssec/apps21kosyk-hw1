@@ -8,10 +8,10 @@ public class TemperatureSeriesAnalysis {
     private double sum;
     private double maxBound = -273.0;
 
-    public TemperatureSeriesAnalysis(double[] temperatureSeries) 
+    public TemperatureSeriesAnalysis(double[] temperatureSeries)
     {
         this.temperatureSeries =
-                Arrays.copyOf(temperatureSeries, 
+                Arrays.copyOf(temperatureSeries,
                         temperatureSeries.length);
     }
 
@@ -45,8 +45,8 @@ public class TemperatureSeriesAnalysis {
         double sd = 0;
         for (int i = 0; i < temperatureSeries.length; i++)
         {
-            sd += (temperatureSeries[i] - mean) * 
-                    (temperatureSeries[i] - mean); 
+            sd += (temperatureSeries[i] - mean)
+                    * (temperatureSeries[i] - mean);
         }
 
         return Math.sqrt(sd / temperatureSeries.length);
