@@ -8,8 +8,11 @@ public class TemperatureSeriesAnalysis {
     private double sum;
     private double maxBound = -273.0;
 
-    public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        this.temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
+    public TemperatureSeriesAnalysis(double[] temperatureSeries) 
+    {
+        this.temperatureSeries =
+                Arrays.copyOf(temperatureSeries, 
+                        temperatureSeries.length);
     }
 
     public double sum() {
@@ -21,7 +24,7 @@ public class TemperatureSeriesAnalysis {
         this.sum = sum;
         return this.sum;
     }
-    public void checkIfEmpty(){
+    public void checkIfEmpty() {
         if (temperatureSeries.length == 0) {
             throw new IllegalArgumentException("Empty array");
         }
@@ -40,8 +43,11 @@ public class TemperatureSeriesAnalysis {
         double mean = this.sum / temperatureSeries.length;
 
         double sd = 0;
-        for (int i = 0; i < temperatureSeries.length; i++) {
-            sd += (temperatureSeries[i] - mean) * (temperatureSeries[i] - mean); }
+        for (int i = 0; i < temperatureSeries.length; i++)
+        {
+            sd += (temperatureSeries[i] - mean) * 
+                    (temperatureSeries[i] - mean); 
+        }
 
         return Math.sqrt(sd / temperatureSeries.length);
     }
@@ -86,7 +92,7 @@ public class TemperatureSeriesAnalysis {
         int length = 0;
 
         for (double temp : temperatureSeries) {
-            if(temp<tempValue){
+            if (temp < tempValue) {
                 length += 1;
             }
         }
@@ -99,7 +105,7 @@ public class TemperatureSeriesAnalysis {
         double[] res = new double[len];
         int i = 0;
         for (double temp : temperatureSeries) {
-            if (temp < tempValue){
+            if (temp < tempValue) {
                 res[i] = temp;
                 i += 1;
             }
@@ -114,7 +120,7 @@ public class TemperatureSeriesAnalysis {
         double[] res = new double[len];
         int i = 0;
         for (double temp:temperatureSeries) {
-            if (temp>=tempValue) {
+            if (temp >= tempValue) {
                 res[i] = temp;
                 i += 1;
             }
@@ -143,7 +149,7 @@ public class TemperatureSeriesAnalysis {
             i += 1;
         }
         for (double temp:temps) {
-            
+
             if (temp <= this.maxBound) {
                 throw new InputMismatchException("Temperature less than -273");
             }
