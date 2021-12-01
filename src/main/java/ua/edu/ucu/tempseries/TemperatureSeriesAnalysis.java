@@ -15,13 +15,13 @@ public class TemperatureSeriesAnalysis {
         checkIfEmpty();
         double sum = 0;
         int i;
-        for (i = 0; i < temperatureSeries.length; i++)
-            sum += temperatureSeries[i];
+        for (i = 0; i < temperatureSeries.length; i++){
+            sum += temperatureSeries[i];}
         this.sum = sum;
         return this.sum;
     }
     public void checkIfEmpty(){
-        if (temperatureSeries.length == 0){
+        if(temperatureSeries.length == 0){
             throw new IllegalArgumentException("Empty array");
         }
     }
@@ -33,21 +33,21 @@ public class TemperatureSeriesAnalysis {
 
     public double deviation() {
         checkIfEmpty();
-        if (temperatureSeries.length == 1){
+        if(temperatureSeries.length == 1){
             return 0;
         }
         double mean = this.sum / temperatureSeries.length;
 
         double sd = 0;
-        for (int i = 0; i < temperatureSeries.length; i++)
-            sd += (temperatureSeries[i] - mean) *
-                    (temperatureSeries[i] - mean);
+        for (int i = 0; i < temperatureSeries.length; i++){
+            sd += (temperatureSeries[i]-mean)*(temperatureSeries[i]-mean);}
 
         return Math.sqrt(sd / temperatureSeries.length);
     }
 
     public double min() {
-        return findTempClosestToValue(-273);
+        double max_bound = -273.0;
+        return findTempClosestToValue(max_bound);
     }
 
     public double max() {
@@ -62,15 +62,15 @@ public class TemperatureSeriesAnalysis {
 
     public double findTempClosestToValue(double tempValue) {
         checkIfEmpty();
-        if (temperatureSeries.length == 0){
+        if(temperatureSeries.length == 0){
             throw new IllegalArgumentException("Empty list");
         }
         double diff = Double.POSITIVE_INFINITY;
         double closestTemp = temperatureSeries[0];
 
-        for(double temp : temperatureSeries){
+        for(double temp:temperatureSeries){
             double difference = Math.abs(temp - tempValue);
-            if (difference < diff){
+            if(difference < diff){
                 diff = difference;
                 closestTemp = temp;
             }
@@ -85,8 +85,8 @@ public class TemperatureSeriesAnalysis {
         checkIfEmpty();
         int length = 0;
 
-        for(double temp : temperatureSeries){
-            if (temp < tempValue){
+        for(double temp:temperatureSeries){
+            if(temp<tempValue){
                 length += 1;
             }
         }
@@ -96,10 +96,10 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsLessThen(double tempValue) {
         int len = findLengthLess(tempValue);
-        double res[] = new double[len];
+        double[] res = new double[len];
         int i = 0;
-        for(double temp : temperatureSeries){
-            if (temp < tempValue){
+        for(double temp:temperatureSeries){
+            if (temp<tempValue){
                 res[i] = temp;
                 i += 1;
             }
@@ -111,10 +111,10 @@ public class TemperatureSeriesAnalysis {
     public double[] findTempsGreaterThen(double tempValue) {
         checkIfEmpty();
         int len = temperatureSeries.length - findLengthLess(tempValue);
-        double res[] = new double[len];
+        double[] res = new double[len];
         int i = 0;
-        for(double temp : temperatureSeries){
-            if (temp >= tempValue){
+        for(double temp:temperatureSeries){
+            if (temp>=tempValue){
                 res[i] = temp;
                 i += 1;
             }
@@ -138,12 +138,12 @@ public class TemperatureSeriesAnalysis {
         int len = temperatureSeries.length + temps.length;
         double[] res = new double [len];
         int i = 0;
-        for(double el : temperatureSeries){
+        for(double el:temperatureSeries){
             res[i] = el;
             i += 1;
         }
-        for(double temp : temps){
-            if (temp <= -273){
+        for(double temp:temps){
+            if(temp<=-273){
                 throw new InputMismatchException("Temperature less than -273");
             }
             res[i] = temp;
@@ -153,10 +153,6 @@ public class TemperatureSeriesAnalysis {
         sum();
         return this.sum;
     }
-
-    public static void main(String[] args) {
-        double[] arr = {1.0, 3.0, -5.0, 5.0};
-        TemperatureSeriesAnalysis tempseries = new TemperatureSeriesAnalysis(arr);
-        System.out.println(tempseries.addTemps(1.0, 2.0));
-    }
 }
+
+
