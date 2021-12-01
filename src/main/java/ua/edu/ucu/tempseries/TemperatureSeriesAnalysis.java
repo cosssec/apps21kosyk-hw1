@@ -6,17 +6,18 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysis {
     private double[] temperatureSeries;
     private double sum;
+    private double maxBound = -273.0;
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         this.temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
     }
 
-    public double sum(){
+    public double sum() {
         checkIfEmpty();
         double sum = 0;
         int i;
         for (i = 0; i < temperatureSeries.length; i++) {
-            sum += temperatureSeries[i];}
+            sum += temperatureSeries[i]; }
         this.sum = sum;
         return this.sum;
     }
@@ -40,14 +41,13 @@ public class TemperatureSeriesAnalysis {
 
         double sd = 0;
         for (int i = 0; i < temperatureSeries.length; i++) {
-            sd += (temperatureSeries[i] - mean) * (temperatureSeries[i] - mean);}
+            sd += (temperatureSeries[i] - mean) * (temperatureSeries[i] - mean); }
 
         return Math.sqrt(sd / temperatureSeries.length);
     }
 
     public double min() {
-        double max_bound = -273.0;
-        return findTempClosestToValue(max_bound);
+        return findTempClosestToValue(this.maxBound);
     }
 
     public double max() {
@@ -74,7 +74,7 @@ public class TemperatureSeriesAnalysis {
                 diff = difference;
                 closestTemp = temp;
             }
-            else if(difference == diff){
+            else if (difference == diff) {
                 closestTemp = Math.max(closestTemp, temp);
             }
         }
@@ -114,7 +114,7 @@ public class TemperatureSeriesAnalysis {
         double[] res = new double[len];
         int i = 0;
         for (double temp:temperatureSeries) {
-            if (temp>=tempValue){
+            if (temp>=tempValue) {
                 res[i] = temp;
                 i += 1;
             }
@@ -143,7 +143,8 @@ public class TemperatureSeriesAnalysis {
             i += 1;
         }
         for (double temp:temps) {
-            if (temp<=-273){
+            
+            if (temp <= this.maxBound) {
                 throw new InputMismatchException("Temperature less than -273");
             }
             res[i] = temp;
